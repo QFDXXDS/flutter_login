@@ -6,6 +6,9 @@ import 'package:flutter_login/Common/Local/LocalStorage.dart';
 import 'package:flutter_login/Common/Config/Config.dart';
 
 import 'package:flutter_login/Common/dao/UserDao.dart';
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/status.dart';
+
 
 class LoginPage extends StatefulWidget {
   static final String sName = "login";
@@ -88,6 +91,8 @@ class content extends State<LoginPage> {
     }
 
     var response = await UserDao.login(_userName, _password) ;
+
+    var channel = IOWebSocketChannel.connect("") ;
 
     print(response);
     Navigator.pushReplacementNamed(context, MainPage.sName);
